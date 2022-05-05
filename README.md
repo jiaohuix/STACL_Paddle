@@ -81,7 +81,7 @@ pip install -r requirements
 
 ### 3.数据处理
 
-	#### 3.1 预处理
+#### 3.1 预处理
 
 - 分词：对于中文先用jieba分词；然后分别对中英（西）使用moses的normalize-punctuation和tokenizer。（事实上中文不需要用moses，而moses在解码后需要de-tokenizing）。
 - 长度过滤：对于中英，过滤掉长度1-250，并且长度比例超过1:2.5或2.5:1的平行语料；对于英西，过滤掉长度1-250，并且长度比例超过1:1.5或1.5:1的平行语料。
