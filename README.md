@@ -373,3 +373,20 @@ bash scripts/gen_eval_enes.sh test $k $ckpt_dir $beam_size
    ```
 
 8. 合并(X,Y) (X1,Y1)并继续训练F,略...
+
+
+
+## 参考链接
+
+[1. STACL: Simultaneous Translation with Implicit Anticipation and Controllable Latency using Prefix-to-Prefix Framework](https://www.aclweb.org/anthology/P19-1289.pdf)
+
+[2.SimulTransBaseline](https://aistudio.baidu.com/aistudio/projectDetail/315680/)：
+
+[3.PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/simultaneous_translation/stacl)
+
+[4.fairseq](https://github.com/pytorch/fairseq)
+
+[5.ConvS2S_Paddle](https://github.com/MiuGod0126/ConvS2S_Paddle)
+
+[6.DeepNet: Scaling Transformers to 1,000 Layers](https://arxiv.org/abs/2203.00555)
+
