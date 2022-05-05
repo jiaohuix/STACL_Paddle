@@ -1,0 +1,66 @@
+Now we will have a look at Baidu Translate API.
+How do we invoke the open API of Baidu Translate?
+We can log in to the platform address api.fanyi.baidu.com.
+Then we will see a page with four tabs.
+Home Page introduces how to apply for permission and how to access the Baidu Translate API service.
+In API Documentation are more detailed descriptions, including definitions of some parameters, descriptions of error codes, some demo programs, and FAQ.
+In Help and Support you can find what languages this open platform supports and how to call the service.
+In Management Console you can manage your developer account and find your usage log.
+Now, I will show you how to use the API .The picture on the left shows the procedure of application.
+For example, if I am a developer and I want to call Baidu Translate, what should I do? I should apply for permission on the previous page. Once we receive your application, an APP ID and a secret key will be assigned to you.
+Then you can access the translation service with the APP ID and secret key.
+Actually you are accessing to the server of Baidu Translate API. After the server receives requests, it will distribute them to translation terminals.
+After the translation terminals finish translating, the results will be returned to the developer.
+For example, we send a request for translating a very simple word “Hello”.
+After receiving the request, Baidu Translate API server will assign it to a translation terminal, and then the erminal returns the translation result of "Hello".
+Shown next is the detailed API documentation. We can visit this address.
+I will give a quick explanation on some of the field names used in the documentation.
+The first field name is q for query.
+The query field indicates the text that we need to translate. It need to be UTF-8 encoded.
+The second field is named FROM.
+The FROM field indicates the source language, for example, whether the source language is Chinese or English, or Arabic, or any other languages.
+If you don't specify a language here, you can set the field to auto.
+If it is set to auto, our system will automatically determine the source language.
+The third field is named TO.
+The TO field indicates the target language.
+Of course we cannot set its value to auto, because we have to specify which language we want to translate the source text into.
+The next field is named appid.
+It indicates the APP ID assigned in the application, which can be seen in the Management Console.
+The next field is for a user-defined random number.
+With the APP ID, the query, the random number and the secret key, we can generate a MD5 value, that is, a signature.
+It is mainly for security reasons.
+So, in what format is the result returned by the translation API? It is in JSON format.
+The result returned by the translation API is in JSON, consisting of three fields.
+One is the FROM field, indicating the source language.
+The second is the TO field, indicating the target language.
+The third is the field of translation result.
+It contains two subfields: the source text and the translation. The translation is exactly the result we need.
+Here is a simple example. It has only 27 lines of code. You'll see how to use the API from this example.
+For example, we can save the file as transapi.php, and you can copy this paragraph to your own program.
+By setting the q field, the FROM field, the TO field, and setting the appid and the secret key, we can do the translation.
+Ok, let’s run this program now.
+The line on the top is the command we need to run the program.
+For example, if we set the source language field to auto, the system will automatically determine the source language.
+Aand the target language is set to ZH, standing for Chinese.
+All the supported languages and their corresponding codes can be found on the website.
+For example, we want to translate such a sentence "What are you doing now?".
+Ok, let’s type it into the program.
+After paring the returned JSON string, we can see that the translation result of "What are you doing now" is returned.
+You can use this program to translate anything you like.
+Here are two application cases.
+On the left is a case of Sansung Mobile calling Baidu Translate API. It is S-pen Translate.
+For example, hovering your S-Pen onto any words on the screen of your Samsung mobile phone, the translation you want will instantly show up in front of you. You don't even need to leave the current screen and switch to another app.
+For example, when we read on a brower any foreign-language text that we don't understand, we usually copy the text and paste it to a translation software to get the translation.
+But with the S-pen Translate feature, we can diectly select the words we want to translate.
+The picture on the right shows a case of ZTE Mobile calling Baidu Translate API.
+They combine speech and translation technologies to provide speech-to-speech transltion.
+Of course, speech-to-speech translation is also a feature of Baidu Translate App.
+Baidu Translate API was launched in May 2012. It now supports translation among 28 languages.
+The number of languages it can translate is increasing. and the advantage of this API is that there is no limit on access frequency, and the service level agreement, SLA, is up to 99.99%.
+Each month you can enjoy a free translation service for no more than 2 million characters.
+If you have more to translate, we will charge a fee accordingly. But It's not high, it's obsolutely reasonable.
+At present, 20 thousand developers are using the Baidu Translate API.
+Among them are Kingsoft iCiba, Huawei, OPPO, ZTE, Samsung, Alipay, and the World Intellectual Property Organization.
+All of them have established a good cooperative relationship with Baidu Translate.
+Other users and developers are also welcome to access Baidu Translate through API and experience the service of Baidu Translate.
+Thank you.

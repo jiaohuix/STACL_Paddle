@@ -1,0 +1,71 @@
+Hello everyone!
+Welcome to the advanced course on the UNIT dialogue system.
+I am Sun Shuqi, an R&D engineer for the Baidu UNIT platform.
+In this course, I will introduce to you the UNIT dialogue management.
+Dialogue management is aimed at dealing with businesses or things that cannot be fully said or done in one sentence.
+There are three major tasks in dialogue management.
+Firstly, the information mentioned in previous sessions have to be remembered.
+Secondly, the missing key information have to be clarified.
+Thirdly, specific dialogue branches should be triggered in different situations.
+Let's refer to a few cases to understand how these dialogue management tasks are performed.
+For example, in the dialogue shown on the left, the user wants to reserve a room, the bot asks how long he intends to stay, and the user says "till next Monday", to which the bot says "OK".
+The user then changes his mind and says, "please make it till next Tuesday", and the bot says "OK".
+What happened during this dialogue?
+Firstly, there was an interpretation of intents and slots, naturally.
+For example, the intent was identified as room reservation, the merchant as Beijing Hotel, and the check-in date as September 14.
+During the second turn of dialogue, the user updated a slot by adding the check-out date, which was September 17.
+The previous two slots and the intent were inherited.
+This is the function of remembering and updating historical information.
+And the slot can also be overwritten.
+For example, when the user spoke the third sentence, the check-out date was updated to September 18.
+That is the function of overwriting information.
+In general, that is how the memory and update mechanism of UNIT works.
+In the second case, let's take a look at the clarification function.
+This is a slot-filling task.
+Let's first look at the dialogue on the left.
+"I want to reserve a room and stay for three days", says the user.
+The bot asks, "What is the check-in date?"
+"Next Monday."
+Then the bot asks, "When would you like to check out?"
+The user becomes unhappy here.
+I've already said I want to stay for three days from next Monday, why ask again?
+Shouldn't you be asking me where I want to stay?
+Why is this happening?
+It is related to the slot-filling logic of UNIT.
+When some configurations are unsatisfactory, some dialogues as weird as that on the left will result.
+Let's take a look at the slot-filling logic of UNIT first.
+After UNIT identifies the intents and slots naturally, what will it do?
+It will check the schema of the intents and slots to see whether the trigger conditions are met or not.
+If not met, it will make some clarifications as in the dialogue on the left.
+But the clarifications are made in a certain order.
+What is the order?
+The clarifications are made in the order that the slots were defined .
+When the configuration is unsatisfactory, for example, the order of defining slots becomes check-in date, check-out date, number of nights, and hotel name.
+If the check-out date is missing here, UNIT will clarify the check-out date instead of the hotel name first, which can be troublesome.
+To avoid such unsatisfactory configurations, there are two solutions.
+The first is to reorder the slots, putting the hotel name at the very front so that it will be clarified first.
+This can solve the problem.
+The second option is to split the intent, that is, to split the intent of reserving a room into two.
+One is to reserve a room based on number of nights, and the other one is to reserve a room based on the check-out date.
+This may be a better solution.
+For example, when reserving a room based on number of nights, the slots are hotel name, check-in date, and number of nights; when reserving a room based on the check-out date, the slots are hotel name, check-in date, and check-out date.
+In this way, the weird question in the above dialogue can be avoided.
+OK, let's take a look at the third case on how to deal with if-else dialogue logic.
+The dialogue in the third case is about increasing credit limit.
+When the user requests to increase their credit limit, it is necessary to assess their qualifications.
+This is the third task of dialogue management as we mentioned just now, and that is to trigger dialogue logics in specific situations.
+The bot judges the users to be qualified.
+Then, what will it say?
+"OK, your credit limit can be increased up to 50,000 yuan. What amount would you like to increase it to?"
+This is the general logic.
+To establish if-else dialogue logics, I suggest using the DM Kit introduced below.
+DM Kit is a local dialogue management module which can run within the developer's own machine environment and integrate seamlessly with our UNIT cloud.
+Because it is a local module, it allows you to write codes to perform some complex multi-state processes.
+In addition, it also supports databases and Web Hook mechanisms, and can access some external resources.
+For example, in the above case, the information that the user can increase their credit card limit to 50,000 yuan must have been acquired by querying the business base.
+DM Kit can provide good support for this.
+Finally, since it is an open source module, we can flexibly develop and extend it.
+To find out more about DM Kit, you can visit the GitHub website through the link below.
+OK.
+That's all for this lesson.
+Thanks！

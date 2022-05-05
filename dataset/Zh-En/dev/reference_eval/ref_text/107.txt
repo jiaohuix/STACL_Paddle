@@ -1,0 +1,40 @@
+Hello, everyone!
+Welcome to the advanced course on the UNIT dialogue system.
+I am Sun Shuqi, an R&D engineer for the UNIT platform.
+In this lesson, we will learn about dialogue states and action triggers.
+During the previous lesson on dialogue management, we learned about the various dialogue management functions on UNIT, which are performed by using dialogue states and action triggers.
+In fact, a dialogue state is passed over each turn of a dialogue.
+We may often find dialogues like these when booking a hotel, for example.
+In a multi-turn dialogue, intents, slots and other information of each turn need to be passed, and they constitute the entire dialogue state.
+A dialogue state is also called a session.
+It is stored in the bot_session field of the request interface and the response interface.
+All of you should have seen this field in the documents.
+It is passed between UNIT and the developer, or the requester.
+And, it is updated by UNIT.
+When certain conditions have been fulfilled, the developer can also clear the dialogue state, that is, to reset it.
+For example, we can clear it when there is a change of intents.
+We may also configure the system to not store sessions before the Nth turn of dialogue.
+It works just like in the diagram on the left.
+First, we have an empty session and we pass it to UNIT.
+UNIT responds and at the same time updates the session.
+Then, during the second round of request, the session is passed as it is, and so on and so forth.
+UNIT will clear the session when a certain condition is triggered.
+The requester can also send an empty session to clear the current one.
+With dialogue states, we can trigger dialogue actions based on some Boolean rules.
+Boolean rules essentially involve the operations of AND, OR, and NOT.
+They can be used to determine what the intent of the previous turn is, Whether the slots of this turn or the previous turn have been filled, and if so, whether it contains something or whether it equals to something.
+The picture on the right shows such expressions on our system interface.
+There are a series of trigger rules and some expressions.
+These rules can be placed into groups within which they are of the AND relation, and among which they are of the OR relation.
+We can trigger a series of dialogue actions based on such Boolean expressions.
+What kinds of dialogue actions specifically?
+As we can see, there are three.
+The first one is answering, the second one is guide toward a dialogue intent, and the third is guide toward a Q&A intent.
+Answering include two types, namely answering in text form and executing functions.
+You can read the detailed descriptions of these types of answering in the diagram on the left.
+I shan't go over them in detail.
+Next, I have two tips to share.
+First, we can have different actions triggered in different sequences.
+Second, we can provide multiple dialogue actions for the developer, or the caller at the same time, then allow them to decide which ones to execute, ranging from all to none.
+OK, that's about it.
+Thank you!

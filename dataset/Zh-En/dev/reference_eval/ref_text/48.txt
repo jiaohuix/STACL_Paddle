@@ -1,0 +1,11 @@
+Hello, everyone!
+I'm Li Peng from Baidu Institute of Deep Learning.
+Welcome to our course, Deeping Learning  by PaddlePaddle.
+In this course, we will focus on basic technologies while keeping track of the cutting-edge progress.
+After this course, we hope that you will have a basic understanding of machine learning, know how to use deep learning to solve basic problems related to image processing and natural language processing, and learn to use PaddlePaddle to realize related models.
+This is a 3-unit course, including eight lessons.
+In Unit 1, I will give you a brief introduction on the basics of machine leanrning.
+In Unit 2, we will learn basic image processing technology and its realization through two tasks, handwritten digit recognition and image classification.
+In Unit 3,  we will focus on five problems, that is,  word embedding,  recommandation system, sentiment analysis, semantic role labeling and machine translation, to show you how to use deep learning to tackle NLP problems and how to realize
+Well, for your convenience, we have also prepared an interactive ebook. For the configuration details you can refer to the introduction in Beginner's Guide.
+All right. We are ready. Welcome to our course, Deeping Learning  by PaddlePaddle!

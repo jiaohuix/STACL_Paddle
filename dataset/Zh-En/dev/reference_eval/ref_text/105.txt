@@ -1,0 +1,63 @@
+Hello, everyone!
+Welcome to the advanced course on the UNIT dialogue system.
+I'm Sun Shuqi, an R&D engineer for UNIT.
+In this lesson, we will learn how to evaluate the performance of a dialogue system.
+Performance evaluations mainly serve two purposes.
+Let's look at the first one, online performance tracking.
+For online performance tracking, we first need to extract some business logs regularly, then evaluate its precision and recall manually.
+How do we extract the logs?
+We must emphasize not to delete the duplicate samples in the actual online logs.
+This is very important, because the duplicate samples will reflect the actual distribution of problems.
+The sample size should be between 100 and 200.
+We can then create an evaluation set in which we will calculate two indexes: precision and recall.
+Some developers may be confused when they first see these two indexes, wondering how to calculate them.
+To make it easier to understand, I have made a diagram here.
+The orange circle represents the queries that have been parsed successfully by the system, and the blue circle represents those queries which we expect to be parsed successfully.
+The B circle is where they intersect, representing the queries that have been parsed successfully and accurately by the system.
+So, the precision formula is caculated by B÷(A+B), which shows the ratio of accurately-identified queries to all those identified by the system.
+This is what precision refers to.
+B÷(B+C) is dividing the number of accurately identified queries by the number of those expected to be identified.
+This is what recall refers to.
+In addition to these two indexes, we also need to pay attention to some key and specific cases.
+For example, if the intents are parsed unsuccessfully or inaccurately, and the slots are not identified, it could be because some utterances that we did not prepared during the configuration phase have been encountered, or because slot values which are not covered in the system dictionary and custom dictionary have appeared.
+This is how we should address this kind of situation -  add new templates and label some samples, supplement the custom dictionary with the missing slot values.
+In the second case, when slots are not accurately identified or normalized, it is likely that there are bad cases in the system slot dictionary, or that some entries in the user slot dictionary have multiple possible meanings, or that the user slot dictionary covers all entries of the system one.
+The solution is to submit feedback to UNIT and urge us to develop and update the system slot dictionary.
+Users can also adjust their templates and dictionaries on their own.
+One tip - a small number of cases can be resolved just by labeling samples.
+The third one is that some new requests cannot be met.
+For example, in a map scenario, we have often found that people not only ask for directions and locations, but also ask for music to be played.
+This is actually very interesting.
+We would have to analyze whether this new request should be supported or not.
+If so, then we would need to add new skills.
+Otherwise, we need to guide the users by telling them that this function is not supported.
+In doing so, lower their expectations.
+In short, regular evaluations are very important.
+We need to quickly discover problems and new requests so as to keep improving the performance of the dialogue system.
+The second one is policy iteration.
+What is policy iteration?
+At first, we have a model X.
+Then, we optimize the model and change it to a new model, Y.
+What should we do before we replace the online model X with Y?
+At this time, we can use the evaluation method I just mentioned, that is, we evaluate the precision and recall.
+If Y scores higher than X on precision and recall, then Y is indeed better.
+But is this enough?
+I don't think so.
+We also need to perform some comparative evaluations to see the diff ratio and GSB.
+Let's look at what diff ratio and GSB are.
+To evaluate on these two indexes, we first need to create a data set, that is, we first use two models, X and Y,  to parse the same data log and see if they generate different results with regard to the same query.
+If they do, we will collect the results and create an observation set.
+Then, to get diff ratio, we can divide the size of the observation set by that of the log.
+In fact, diff ratio essentially reflects the percentage of queries for which the two models generate different results.
+It is very important, because it represents the degree of change in user experience when Y is released.
+By observing all the different results we can see whether Y is better than X or vice versa for each individual query, or whether they perform similarly despite having different results.
+Every case is rated in three levels: good, same and bad.
+G: S: B refers to the ratio of "good" cases to "same" cases to "bad" cases.
+In this way, the result is very clear.
+For Y to replace X, there should be more G cases than B cases.
+This is the only way to prove that Y is better than X.
+We should also take note if the diff ratio is too high.
+As a rule of thumb, if the diff ratio is higher than 10%, then things become tricky, because it entails a relatively significant change in user experience.
+We need to consider whether this significant change in user experience needs to be addressed.
+OK, that's all for this lesson.
+Thank you!

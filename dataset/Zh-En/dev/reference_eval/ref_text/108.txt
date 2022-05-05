@@ -1,0 +1,34 @@
+Hello, everyone!
+Welcome to the advanced course on the UNIT dialogue system.
+I'm Sun Shuqi, an R&D engineer for UNIT platform.
+In this lesson, we will learn about UNIT's feedback learning mechanism.
+The reason for having a feedback learning mechanism is to prevent abnormal conditions from disrupting the normal operation of UNIT.
+For example, abnormal requests before NLU and abnormal results after NLU will all cause problems for UNIT's operation.
+Ordinary users will find it difficult to deal with such problems, so we need to introduce some mechanisms to solve these problems.
+When a request arrives, we first need to determine whether it is a feedback or a normal request.
+If it is a feedback, it needs to be sent directly to DM so as to modify the dialogue state and dialogue result at the previous turn.
+If it is a normal request, we need to perform a quality check of the NLU result after the NLU procedure.
+It will only be sent to DM if the NLU result is of good quality.
+If the NLU result is of poor quality, the corresponding clarification mechanism will be triggered to get the user to clarify the result.
+Of course, we also need to have a feedback memory mechanism at the end.
+The feedback memory mechanism works like this - if a particular request has been given feedback before, subsequent identical or similar requests will be handled using the same feedback result, thus preventing past errors from reoccurring.
+Next, let's see what functions there are for feedbacks.
+The first function is correcting ASR errors.
+There are five ways to do that – clarifying the correct Chinese character by using a word,  clarifying the correct Chinese character by using a radical, clarifying the correct Chinese character by using disassembled components, partial repeating of the phrase, and full repeating of the phrase.
+Here are some examples.
+As you can see,  speech recognition errors can be fixed.
+The second function is intervening in NLU results.
+When an error occurs in the interpretation of intents and slots, we can correct the result and thus allow the dialogue to proceed normally by using natural language utterances, as shown in this example.
+Aside from intervention mechanisms, there are also clarification mechanisms.
+This refers to UNIT's ability to proactively initiate queries regarding potential errors, such as queries about intents and slots when the intents are vague or the slot has more than one possible meaning.
+These proactive queries will help to prevent problems from occurring.
+Lastly, the feedback memory can be added to the sample set to assist the training of the natural language understanding module.
+You can learn more about this function in the feedback learning log.
+For example, in this one: "Cai Xukun is so handsome!"
+Do you mean you want to listen to his songs?
+No, I'm just fangirling.
+During this dialogue, "Cai Xukun is so handsome" is labeled as a sys_other intent.
+After training, the same clarification process will not be repeated if the same utterance appears again.
+Instead, it will be directly handled as a sys_other intent.
+OK, that's all for this lesson.
+Thank you!

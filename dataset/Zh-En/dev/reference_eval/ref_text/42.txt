@@ -1,0 +1,87 @@
+Hello, everyone.
+Today, I am pleased to introduce to you how to quickly create an AR app using AR Open SDK.
+First, I will introduce the AR access process, which consists of three steps.
+First, the developer accesses the Baidu developer backstage with a Baidu account, creates an AR-capable app, and downloads the AR Open SDK.
+Second, upload the AR content package to the AR content platform.
+Third, integrate the AR SDK into the app.
+I shall now demonstrate the whole process.
+First, visit ai.baidu.com.
+Choose Console.
+Log in your Baidu account.
+Choose Product Service and then AR.
+Click Create App.
+Enter App Name.
+Choose App Type and Interface Type.
+Enter AR Package Name.
+Fill in App Description.
+Return to App List.
+By now, an AR-capable app has been created.
+Next, download the AR SDK.
+Navigate to the management page.
+Click Download SDK.
+Find AR.
+Two options, one for Android and one for iOS, are provided. Download the one you need.
+Let me now introduce these two versions.
+First, the Android version.
+I will introduce the content in the SDK.
+The SDK consists of five parts.
+The first part is a basic developer document.
+The second part is a demo.
+The third part is a libs folder which contains jar packages and corresponding so libraries.
+The fourth part is the resources required during AR usage.
+Developers can copy them to their projects.
+The sample folder contains AR content creation cases.
+Developers can conduct development based on these cases.
+Next, I will introduce how to upload an AR app.
+Find Content Creation.
+Choose Create New Project.
+Choose a template like IMU Template.
+Click on Next Step.
+Set Project Title.
+Choose the app we created just now, AR test, for Channel Selection.
+Click on Next Step.
+Choose Resource Package.
+For the resource package content, we can find IMU in the sample folder in the AR SDK package we downloaded just now.
+Click Submit.
+By now, the AR content package in this case has been uploaded successfully.
+Two values, AR Key and AR Type, are generated.
+They will be used during AR SDK integration.
+Next, I will introduce how to integrate the AR Open SDK into your project directory.
+First, import the decompressed jar package and corresponding so libraries to your project.
+In addition, copy the resource files on which the AR runtime environment depends to your res directory.
+Third, configure the Manifest file and add the permissions necessary for the AR runtime environment.
+Fourth, initialize the AR environment in the codes and add AR Fragment to your page.
+First, initialize resources.
+Set the App ID, API Key and Secret Key for your app.
+In addition, set the AR Key and AR Type for the resource package that displays the AR content.
+The third step is to create an AR Fragment and add the Fragment to your layout.
+The AR SDK provides a Callback interface.
+It contains three interfaces- one sharing interface, one URL sending interface, and one AR blacklist callback interface.
+By now, AR integration has been completed.
+Next, we will introduce the iOS version.
+Let's take a look at the content of the AR SDK for iOS.
+First, the AR SDK folder has a speech synthesis AR SDK, AR-TTS, and a voice recognition AR SDK, AR-Voice.
+It also contains the resource package, header files, and customized UI.
+Let's take a look at project configuration.
+First, in the project, set the Bundle ID as the iOS package name that you entered when creating the app.
+Second, choose Build Setting in project configuration and set Other Linker Flags.
+Third, if the AR SDK of the general availability version is used, you need to import the aip.license.
+Fourth, enable the relevant permissions.
+Fifth, add third-party system libraries required by Dumix AR.
+Let's go to a relevant target project to perform detailed configuration.
+First, add the third-party system libraries, AFNetworking and ZipArchive.a, which are required by Dumix AR, to the project.
+Then, add BaiduAR.bundle and its resource files to the project.
+Then, add OpenUI, the include folder, and Dumix AR to the project.
+Then, set Other Linker Flags in Build Settings.
+Then, in the Info list, enable the camera permission, photo library permission, and microphone permission.
+Then, add the required third-party libraries to the Build Phases page, including system libraries, AF, and Zip.
+By now, the project configuration for AR SDK integration has been completed.
+Next, let's take a look at how to set the App ID, API Key, and Secret Key.
+In AppDelegate, import BaiduARSDK.
+Then, when the application launches, an if-statement is required to judge whether your phone model supports AR or not.
+If so, set the BundlePath, that is, the resource path.
+Then, set the APP ID, API Key, and Secret Key.
+By now, the whole AR project has been completed.
+That's all for today.
+For more information, visit the Baidu Augmented Reality website at ar.baidu.com.
+Thank you.

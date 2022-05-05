@@ -1,0 +1,41 @@
+Developers, entrepreneurs and friends, good afternoon!
+It is an honor for me to welcome all of you to attend the ceremony!
+Today is the last day of our 2017 Baidu AI Developer Camp, and the openning day of our Baidu AI Accelerator.
+We all know that AI is now very popular, but what does AI mean to us actually?
+All of us know this saying, "Science and technology constitute a primary productive force."
+Over the past 200 years, mankind has already gone through three industrial revolutions, each of which has greatly increased the productivity through injecting the power of technology into every aspect of our production and daily life.
+Now we are undergoing the fourth industrial revolution.
+So what is the key technology this time?
+Artificial intelligence, of course.
+AI will not only improve the efficiency of existing industries, but also bring about a lot of new products and new industries.
+In this process, although this time the booming of AI is largely due to the Internet industry that possesses an enormous amount of data, very strong computing capability and computational platforms, and many advanced algorithms.
+But the impact of AI is far beyond the Internet.
+It will definitely affect all kinds of industries and the life of people in all aspects, bringing productivity increase.
+And productivity increase, in return, will eventually affect the production relations.
+Most of us might have learned this when we were in school.
+Economic base will eventually determine our superstructure.
+In other words, along with its growth, little by little, AI will bring  profound impacts on everyone of us and on the whole society.
+Baidu started search engine service nearly 18 years ago.
+At the beginning, we would say search engine is naturally an AI product,  so from the very beginning of our search engine development, Baidu has been working on some AI technologies, for example, NLP technologies.
+And seven or eight years ago, Baidu started setting a full layout for AI.
+For example, NLP, speech, image, machine learning, knowledge graph, big data and etc. were started in Baidu at that time.
+Now we have got a rather complete layout, from the most basic layer to the perception layer, which covers speech, image, vision, video, AR, VR，to the cognition level, including NLP, KG and user portrait.
+More importantly, based on these technologies, we have established a complete platform and ecosystem, which are closely related to every developer and entrepreneur here.
+As the host mentioned just now, since October our Baidu AI Developer Camp has been held in many cities.
+Today it returns to Beijing and comes to an end.
+Of course, its end in this year does not mean it is over.
+I believe that more and more developers will achieve their success in our camp next year.
+In addition to the Camp, in addition to the AI capacities we offered to AI-related developers and entrepreneurs, we also hope we could provide comprehensive support, in terms of partnerships, market channels and funds.
+That's why we have this AI Accelerator that opens today.
+We expect that our Practice Camp can help the participants to improve their business skills through practices and exercises, and we wish that our AI Accelerator could provide a much more comprehensive support for all of you.
+Before I left the company for the conference, I got an e-mail.
+Many of you may know that we held the 2017 Baidu World Conference on November 16th, opening many new capabilities such as AR.
+Now, half a month has passed.
+The e-mail forwarded by a colleague of mine, said that after the opening of the capabilities, a developer soon has published his self-developed product based on these capabilities.
+During the period from November 16th to today, the product has been sold in market and won orders.
+And this is just one example I've heard.
+I believe that some of you here may have similar experience.
+I hope that Baidu can provide more support for you and we will succeed together!
+The success of all developers and partners is the success of Baidu AI, and also the success of Baidu.
+Let us contribute our share to achieve a better future for our society and our life!
+Thank you!

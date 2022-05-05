@@ -1,0 +1,23 @@
+Hello, everyone!
+Our course is about the art of coding.
+To begin with, I'll introduce myself.
+I'm the technical leader of the BFE Team of the Operation and Maintenance Department.
+I'm also a member of Baidu's Python and Golang code master comittees.
+If you want to know more about me, you can visit my wiki page.
+Firstly, I'd like to talk about why we have this course.
+Many of you have just graduated from college and come to Baidu.
+I'd like to point out first that programming in Baidu is quite different from that in college.
+When you were students, you programmed for your course assignments or your teachers' projects.
+So I assume mediocre coding would just do.
+However, in Baidu we are making industrial products for hundreds of millions of users, which requires codes with higher quality.
+Secondly, I want to clear up some of your misunderstandings through this course.
+Many of you call programmers “coding farmers” in a self-mocking way.
+Many of you believe that you'll no longer have the energy to continue writing codes after the age of 35.
+Some of you reckon that the only way for programmers is to become managers.
+So this course aims to shed a new light on the profession of programmers, as well as to give you a correct understanding of software programming.
+We often ask which one is more important, knowledge or action.
+You have to have a proper knowledge to take a proper action.
+We also hope that through this course you can find your way as a software engineer.
+It is often said that art is created by artists.
+Actually an artist has his or her own way of perfecting the skills.
+In short, we hope that you will gain a brand new understanding of the profession of software engineers.
