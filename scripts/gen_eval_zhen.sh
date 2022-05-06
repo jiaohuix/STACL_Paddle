@@ -65,7 +65,9 @@ if [ $mode == test ];then
   for id in $(seq 1 20);do
     paste dataset/Zh-En/test/streaming_transcription/${id}.txt  decode/zh-en.w${k}.${id} > ${folder}/${id}.trans.txt
   done
+
+  zip -r res_zh_en_T.zip res_w*
+
 fi
 
 echo "done"
-zip -r res_zh_en_T.zip res_w*

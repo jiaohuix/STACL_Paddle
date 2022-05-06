@@ -76,5 +76,17 @@ if [ $mode == dev ];then
 fi
 
 if [ $mode == test ];then
-  bash scripts/test_res_zhen.sh $k
+  folder=res_w${k}
+  if [ ! -e  ${folder} ];then
+    mkdir ${folder}
+  fi
+
+  for id in $(seq 1 20);do
+    paste dataset/Zh-En/test/streaming_transcription/${id}.txt  decode/zh-en.w${k}.${id} > ${folder}/${id}.trans.txt
+  done
+
+  zip -r res_zh_en_T.zip res_w*
+
 fi
+
+echo "done"

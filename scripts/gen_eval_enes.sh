@@ -46,4 +46,9 @@ if [ $mode == test ];then
     mkdir res_w${k}
   fi
   paste dataset/En-Es/test/streaming_transcription/en-es.stream.test.src.txt  $savedir/en-es.w${k}.all > res_w${k}/res.trans.txt
+
+  zip -r res_en_es_T.zip res_w*
+
 fi
+
+echo "done"
