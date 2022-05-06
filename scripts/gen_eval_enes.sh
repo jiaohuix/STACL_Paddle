@@ -18,7 +18,7 @@ stream_prefix=dataset/stream_en/${mode}.bpe
 savedir=output
 
 # waitk generate
-python paddleseq_cli/generate.py --cfg configs/enes.yaml \
+python paddleseq_cli/generate.py --cfg configs/enes_un.yaml \
                    --src-lang $src_lang  --test-pref $stream_prefix \
                    --pretrained $pretrained \
                    --waitk ${k} \

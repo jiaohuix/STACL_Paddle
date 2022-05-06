@@ -99,7 +99,7 @@ train:
   last_step: 0
   # The frequency to save trained models when training.
   save_epoch: 1
-  save_step: 0
+  save_step: 100
   stop_patience: -1
   amp: False
   fp16_init_scale: 128

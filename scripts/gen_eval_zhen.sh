@@ -33,7 +33,7 @@ fi
 for prefix in ${file_nums[*]};do
   # waitk generate
   echo "----------------------------generating file ${prefix}----------------------------"
-  python paddleseq_cli/generate.py --cfg configs/zhen_deep.yaml \
+  python paddleseq_cli/generate.py --cfg configs/zhen_ccmt.yaml \
                      --src-lang $src_lang  --test-pref $stream_folder/$prefix \
                      --pretrained $pretrained \
                      --waitk ${k} \

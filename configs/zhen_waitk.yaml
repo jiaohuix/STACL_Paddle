@@ -32,7 +32,7 @@ model:
   # Path of trained parameter, to make prediction
   init_from_params: ""
   # The directory for saving models
-  save_model: "ckpt/"
+  save_model: "ckpt/zhen_wk"
   # Size of source、target word dictionary（automatically updated after 'prep_vocab'）.
   src_vocab_size: None
   tgt_vocab_size: None
@@ -96,7 +96,7 @@ train:
   last_step: 0
   # The frequency to save trained models when training.
   save_epoch: 1
-  save_step: 0
+  save_step: 100
   stop_patience: -1
   amp: False
   fp16_init_scale: 128
