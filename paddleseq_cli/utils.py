@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-''' origin ConvS2S_Paddle utils'''
 import os
 import time
 import logging

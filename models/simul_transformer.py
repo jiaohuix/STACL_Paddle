@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 '''
-改进:
-1.static_cache不需要,不生成
-2.增加target key pad mask
-3.增加forward_encoder,forward_decoder,reorder_encoder_out,reorder_incremental_state四个函数,完美适配generator
+modify:
+1.remove static_cache
+2.add target key pad mask
+3.add forward_encoder,forward_decoder,reorder_encoder_out,reorder_incremental_state, in order to adapt to fairseq generator
 '''
 from __future__ import print_function
 import numpy as np
@@ -63,7 +63,7 @@ class DecoderLayer(nn.TransformerDecoderLayer):
         if self.normalize_before:
             tgt = self.norm2(tgt)
         if len(memory) == 1:
-            # Full sent # 自回归预测时走的这里,一次预测一个词
+            # Full sent # autoregressive
             tgt = self.cross_attn(tgt, memory[0], memory[0], memory_mask, None)
         else:
             # Wait-k policy # 训练时根据多个增长的src,预测多个tgt

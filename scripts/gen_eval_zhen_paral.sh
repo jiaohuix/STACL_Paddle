@@ -47,7 +47,7 @@ do
       if [ $j -lt $file_len ];then
         prefix=${file_nums[$j]}
         echo "----------------------------generating file ${prefix}----------------------------"
-        python generate.py --cfg configs/zhen_deep.yaml \
+        python paddleseq_cli/generate.py --cfg configs/zhen_deep.yaml \
                            --src-lang $src_lang  --test-pref $stream_folder/$prefix \
                            --pretrained $pretrained \
                            --waitk ${k} \

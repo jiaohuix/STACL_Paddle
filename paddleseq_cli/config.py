@@ -23,6 +23,7 @@ def get_arguments():
     parser.add_argument("--save-dir", default=None, type=str,help="save dir for model、log、generated text")
     parser.add_argument("--resume", default="", type=str, help="resume from checkpoint")
     parser.add_argument("--last-epoch", default=None, type=int, help="resume from epoch+1")
+    parser.add_argument("--last-step", default=None, type=int, help="resume from step+1")
     parser.add_argument("--log-steps", default=None, type=int, help="Number of steps between log print.")
     parser.add_argument("--report-bleu", action="store_true",help="report bleu when valid")
 
@@ -106,6 +107,8 @@ def get_config(args):
         conf.train.resume = args.resume
     if args.last_epoch:
         conf.train.last_epoch = args.last_epoch
+    if args.last_step:
+        conf.train.last_step = args.last_step
     if args.log_steps:
         conf.train.log_steps = args.log_steps
     if args.report_bleu:

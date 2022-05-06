@@ -11,29 +11,7 @@ from reader import prep_dataset,prep_vocab, prep_loader, create_stream_infer_loa
 from paddleseq_cli.utils import sort_file, stream_decode,post_process,same_seeds,to_string
 from models import build_model, SequenceGenerator
 from paddlenlp.metrics import BLEU
-'''
-4/1待完成
-添加流式处理:
-√1.在generate开头将流式文件转为非流式的整行,供test dataloader读取 (要求流式和非流式能完美互转，否则肯定影响解码)
-    a.在enes时“-”也会被单独作为一行, 在另起一行时还要合并（暂时不合并）
-    b.还有一个问题，dev里有按char分的，如"ex-Séléka"，完全无法处理，放弃！(后面还是得对齐)
-√2.修改data里面,为test sample添加real_read，bpe预处理，在generate按照steam参数接收 （
-    convert_sample添加分词并得到real read；√
-    batchify将real_read组装好然后再暴露出去√
-    注意修改has_target=False,还有如何把stream变成whole的file
-3.将hypo["tokens"]过下流式处理(后处理一样)√
-4.将整行和流式文件分别输出到不同文件
-5.合并流式输入和输出文件,方便提交
-4/2 对齐real read，使得流式输出行数不变
-建议不要将流式转为非流式，然后再转回去，浪费时间还容易出错。
 
-4/12
-流式预测时不再写gen.txt，而是打印出来，原先的result接收流式结果
--c configs/zhen_deep.yaml --infer-bsz 128  --only-src --generate-path ""  --sorted-path ""  --pretrained ckpt/present/mix_asr --beam-size 1
-
-命令：
--c configs/zhen_deep.yaml --infer-bsz 1 --pretrained output/ckpt/zhen/step2/model_best_22.84 --infer-bsz 128
-'''
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",

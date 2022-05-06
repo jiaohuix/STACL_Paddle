@@ -3,17 +3,7 @@
 #
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
-"""
-Data pre-processing: build vocabularies and binarize training data.
-2022/4/16 修改如下：
-*1.注意不支持workers>1
-2.词表加载时，特殊字符必须按照bos,pad,eos,unk顺序，否则会错位2个
-3.MMapDataset的getittem返回list，方便paddle调用
-4.preprocess去掉append eos，在paddle加载时完成
 
-4/22
-***paddle的vocab不能作为pool.apply_async的参数，直接传个路径吧
-"""
 import os
 import sys
 __dir__=os.path.dirname(os.path.abspath(__file__))

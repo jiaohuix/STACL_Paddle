@@ -41,6 +41,24 @@ seq2seq架构的模型输入整个src，以及之前的tgt，从而预测后面�
 
 ![](https://ai-studio-static-online.cdn.bcebos.com/a39f5757965d4016884540d1f7ed79ea8cdf96ed5cf64dd4becbc20e72444971)
 
+​		为了评估本项目的模型、训练、评估等的实现程度，遂与fairseq作比较，在2m的ccmt上训练base和本项目使用的deep encoder，参数和结果如下：
+
+| lr   | warmup | optimizer      | schedule     | update-freq | dropout |
+| ---- | ------ | -------------- | ------------ | ----------- | ------- |
+| 5e-4 | 4000   | adam(0.9,0.98) | inverse_sqrt | 4           | 0.1     |
+
+| Frame   | Arch           | Epoch | Bleu        | Speed（steps/s） |
+| ------- | -------------- | ----- | ----------- | ---------------- |
+| fairseq | base           | 16    | 23.08       | 10.5(3090)       |
+| fairseq | big            | -     | -           | -                |
+| paddle  | base           | 7     | **23.1846** | 3.4 （V100）     |
+| paddle  | 12+6+deepnorm√ | 17    | 23.1301     | 2.8 （V100）     |
+| paddle  | big            | -     | -           | 1.4 （V100）     |
+
+​		目前来看在2m上，paddle版的base略胜于fairseq的base🤭，而本项目使用的12+6未看出比base强😫，可能需要在更大数据量上才会有更好的效果？挖个坑留待以后继续测。
+
+​	
+
 ## 快速开始
 
 ### 1.准备工作
@@ -335,7 +353,8 @@ bash scripts/gen_eval_enes.sh test $k $ckpt_dir $beam_size
    python paddleseq_cli/generate.py --cfg configs/zhen_ccmt.yaml \
    			--src-lang en --tgt-lang zh \
                --test-pref $mono_file --only-src \
-               --pretrained  $ckpt_dir
+               --pretrained  $ckpt_dir  --remain-bpe
+   # 注意保留bpe结果，以便用于训练
    ```
 
 6. 查看预测结果logprob分布:
