@@ -218,6 +218,9 @@ def main(args):
         tgt_dict_path = get_vocab_path(args, return_src=False)
         make_all(args.target_lang, tgt_dict_path)
 
+    # copy vocab to destdir
+    shutil.copyfile(args.srcdict,os.path.join(args.destdir,os.path.basename(args.srcdict)))
+    shutil.copyfile(args.tgtdict,os.path.join(args.destdir,os.path.basename(args.tgtdict)))
     logger.info("Wrote preprocessed data to {}".format(args.destdir))
 
 
