@@ -12,7 +12,7 @@ data:
   valid_pref: data_bin/bstc_bin/valid.zh-en
   test_pref: data_bin/bstc_bin/test.zh-en
   # The prefix pattern to match vocabulary.
-  vocab_pref: dataset/bstc/vocab
+  vocab_pref: data_bin/bstc_bin/vocab
   src_bpe_path: dataset/ccmt21/zh.bpe
   # The <bos>, <eos> and <unk> tokens in the dictionary.
   special_token: ["<s>","<pad>","</s>","<unk>"]
