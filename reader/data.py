@@ -6,15 +6,7 @@ from paddlenlp.datasets import load_dataset
 from paddlenlp.data.sampler import SamplerHelper
 from reader.indexed_dataset import MMapIndexedDataset
 from .iter_dataloader import LanguagePairDataset,BufferedDataloader
-'''
-3/31: 修改read，支持部分加载；未来考虑不同epoch加载不同部分数据，既能利用全量数据训练，加载速度也快
-3/32: 添加流式读取：先将流式文件处理成非流式√（考虑是否放入data加载中，先不），
-    然后修改convert，添加bpe分词和real_read （stream格式默认未分词！）
-    修改batchify，，修改gen，然后验证生成结果有效性。
-    先跑通，然后再处理real_read不对齐的情况。
-4/16:
-支持懒加载动态组batch。
-'''
+
 def replace_punc(line):
     ''' 中文预处理未能将所有标点转为英文标点，而词表无中文标点。'''
     punc_map={

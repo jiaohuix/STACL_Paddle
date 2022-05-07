@@ -640,16 +640,3 @@ def gather(x, axis, index):
     paddle_out = paddle.gather_nd(x, paddle.stack(nd_index, axis=-1)).reshape(index_shape)
     return paddle_out
 
-if __name__ == '__main__':
-    search=BeamSearch()
-    lprobs=paddle.randn([4,5,100])
-    step=2
-    scores=paddle.randn([4,5,step])
-    scores_buf, indices_buf, beams_buf=search.step(step,lprobs,scores)
-    print(scores_buf.shape)
-    print(indices_buf.shape)
-    print(beams_buf.shape)
-
-    print(scores_buf)
-    print(indices_buf)
-    print(beams_buf)

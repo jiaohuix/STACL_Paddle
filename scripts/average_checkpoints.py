@@ -114,6 +114,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    '''
-    python scripts/average_checkpoints.py --inputs output/ckpt/full_bin  --output output/ckpt/full_bin/avg3 --num-ckpts 3
-    '''

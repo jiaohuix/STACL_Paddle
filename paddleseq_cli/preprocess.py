@@ -358,24 +358,3 @@ def cli_main():
 if __name__ == "__main__":
     cli_main()
 
-'''
-enes
-python preprocess/preprocess.py --source-lang en --target-lang es --trainpref enes21/tiny/train --validpref enes21/tiny/dev --testpref enes21/tiny/test  --destdir data_bin/enes21 --thresholdtgt 0 --thresholdsrc 0 --srcdict enes21/tiny/vocab.en --tgtdict  enes21/tiny/vocab.es  --workers 4
-python preprocess/preprocess.py --source-lang en --target-lang es --trainpref enes21/train.bpe --validpref enes21/dev.bpe --testpref enes21/test.bpe  --destdir data_bin/enes21_full --thresholdtgt 0 --thresholdsrc 0  --srcdict enes21/tiny/vocab.en --tgtdict  enes21/tiny/vocab.es  --workers 4
-python preprocess/preprocess.py --source-lang en --target-lang es --trainpref enes21/train.bpe --validpref enes21/dev.bpe --testpref enes21/test.bpe  --destdir data_bin/enes21 --thresholdtgt 0 --thresholdsrc 0  --srcdict enes21/vocab.share.en --tgtdict  enes21/vocab.share.es  --workers 4
-
-no share
-python preprocess/preprocess.py --source-lang en --target-lang es --trainpref enes21/train.bpe --validpref enes21/dev.bpe --testpref enes21/test.bpe  --destdir data_bin/enes21 --thresholdtgt 0 --thresholdsrc 0  --srcdict enes21/vocab.en --tgtdict  enes21/vocab.es  --workers 4
-python preprocess/preprocess.py --source-lang en --target-lang es --trainpref enes21/train.bpe --validpref enes21/dev.tiny --testpref enes21/test.tiny  --destdir data_bin/enes21 --thresholdtgt 0 --thresholdsrc 0  --srcdict enes21/vocab.en --tgtdict  enes21/vocab.es  --workers 4
-
-
-zhen
-python preprocess/preprocess.py --source-lang zh --target-lang en --trainpref dataset/Zh-En/zhen21_bpe/bstc/asr.bpe --validpref dataset/Zh-En/zhen21_bpe/bstc/dev.bpe --testpref dataset/Zh-En/zhen21_bpe/bstc/dev.bpe  --destdir data_bin/zhen21_asr --thresholdtgt 0 --thresholdsrc 0  --srcdict dataset/Zh-En/zhen21_bpe/vocab.zh --tgtdict  dataset/Zh-En/zhen21_bpe/vocab.en  --workers 4
-python preprocess/preprocess.py --source-lang zh --target-lang en --trainpref dataset/Zh-En/zhen21_bpe/bstc/dev.bpe --validpref dataset/Zh-En/zhen21_bpe/bstc/dev.bpe --testpref dataset/Zh-En/zhen21_bpe/bstc/dev.bpe  --destdir data_bin/zhen21_asr --thresholdtgt 0 --thresholdsrc 0  --srcdict dataset/Zh-En/zhen21_bpe/vocab.zh --tgtdict  dataset/Zh-En/zhen21_bpe/vocab.en  --workers 4
-
-zhen iter1 15m
-
-python preprocess/preprocess.py --source-lang zh --target-lang en --trainpref dataset/Zh-En/zhen21_bpe/iter1/train --validpref dataset/Zh-En/zhen21_bpe/iter1/dev.zh-en.bpe --testpref dataset/Zh-En/zhen21_bpe/iter1/dev.zh-en.bpe  --destdir data_bin/zhen21_iter1 --thresholdtgt 0 --thresholdsrc 0  --srcdict dataset/Zh-En/zhen21_bpe/vocab.zh --tgtdict  dataset/Zh-En/zhen21_bpe/vocab.en  --workers 4
-
-
-'''

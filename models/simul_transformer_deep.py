@@ -12,12 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 '''
-改进:
-1.static_cache不需要,不生成
-2.增加target key pad mask
-3.增加forward_encoder,forward_decoder,reorder_encoder_out,reorder_incremental_state四个函数,完美适配generator
-4.增加了deepnorm
-5.注意fairseq attn_drop=act_drop=0,而paddle默认none取drop
+modify:
+1.remove static_cache
+2.add target key pad mask
+3.add forward_encoder,forward_decoder,reorder_encoder_out,reorder_incremental_state, in order to adapt to fairseq generator
+5.fairseq attn_drop=act_drop=0,paddle default attn_drop=act_drop=drop
 '''
 from __future__ import print_function
 import types
@@ -573,70 +572,3 @@ def deep_encoder_share(is_test=False, pretrained_path=None, **kwargs):
     model = _create_transformer('deep_encoder_share', is_test, pretrained_path, model_args)
     return model
 
-if __name__ == '__main__':
-    import time
-
-    bsz = 4
-    src_v = 300
-    tgt_v = 400
-    waitk = 1
-    # waitk=3
-    pads = paddle.ones([bsz, 3])
-    src_len, tgt_len = 7, 10
-    src_tokens = paddle.randint(2, src_v, [bsz, src_len])
-    max_len = 4
-    model = SimultaneousTransformer(src_vocab_size=src_v, tgt_vocab_size=tgt_v, waitk=waitk)
-    if hasattr(model.encoder, 'reorder_encoder_out'):
-        print('yes encoder')
-
-    encoder_out = model.forward_encoder(src_tokens)
-
-    print(encoder_out['encoder_out'][0].shape)
-    incremental_state = model.decoder.gen_caches(encoder_out['encoder_out'][0])  # gen_cache没有s,只产生self的,没有cross的
-    print(len(incremental_state[0]))
-    tokens = paddle.zeros(shape=[bsz, max_len], dtype='int64')
-
-    start = time.time()
-    for i in range(max_len):
-        lprobs, incremental_state = model.forward_decoder(tokens[:, :i + 1], encoder_out, incremental_state)
-        tok = lprobs.argmax(axis=-1)
-        tokens[:, i] = tok[:, -1]
-        print(f'step:{i}', tokens)
-
-        ### reorder
-        new_order = paddle.arange(bsz).reshape((-1, 1)).tile(repeat_times=[1, 1]).reshape([-1])
-        encoder_out = model.encoder.reorder_encoder_out(encoder_out, new_order)
-        incremental_state = model.decoder.reorder_incremental_state(incremental_state, new_order)
-        print(f'reorder yes {i}')
-
-    end = time.time()
-    print(f'wait-{waitk} exe time:{end - start}')
-    '''
-    wait-1 exe time:0.4350016117095947
-    wait3 exe time:0.2870006561279297
-    wait-5 exe time:0.24699974060058594
-    wait-10 exe time:0.2391362190246582
-    wait-full exe time:0.24700212478637695
-    '''
-
-    '''
-    step:0 Tensor(shape=[4, 4], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[279, 0  , 0  , 0  ],
-        [326, 0  , 0  , 0  ],
-        [353, 0  , 0  , 0  ],
-        [41 , 0  , 0  , 0  ]])
-step:1 Tensor(shape=[4, 4], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[279, 242, 0  , 0  ],
-        [326, 13 , 0  , 0  ],
-        [353, 50 , 0  , 0  ],
-        [41 , 376, 0  , 0  ]])
-step:2 Tensor(shape=[4, 4], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[279, 242, 300, 0  ],
-        [326, 13 , 275, 0  ],
-        [353, 50 , 59 , 0  ],
-        [41 , 376, 242, 0  ]])
-step:3 Tensor(shape=[4, 4], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[279, 242, 300, 98 ],
-        [326, 13 , 275, 376],
-        [353, 50 , 59 , 50 ],
-    '''

@@ -1,6 +1,5 @@
 import paddle
 
-
 class BeamSearch(object):
     def __init__(self, ):
         super().__init__()
@@ -45,53 +44,6 @@ class BeamSearch(object):
 
 
 
-
-
-'''
-修改：
-1.常见： size dim view contigus  to(type+device)->cast
-2.inplcae 操作: clamp_->clip   exp_√ add_√log_√ masked_fill_√  scatter_（where）
-3. gather scatter repeat->tile(tile是看倍数)  new_zeros->zeros(shape，type一样)   (expand,expand_as 要加括号！，都是扩展到某个shape，而repeat或者tile是按照倍数扩展，即repeat_times)
-4.疑难 ：multinomial ， empty(不变) ,sort->(sort+argsort) √,tensor.cumsum-> paddle.cumsum√ lt√    topk一致√
-'''
-
-
-def masked_fill(x, mask, value):
-    return paddle.where(mask, paddle.to_tensor(value, dtype=x.dtype), x)
-
-def gather(x, axis, index):
-    index_shape = index.shape
-    index_flatten = index.flatten()
-    if axis < 0:  # 最后一维
-        axis = x.ndim + axis
-    nd_index = []
-    for k in range(x.ndim):
-        if k == axis:
-            nd_index.append(index_flatten)
-        else:
-            reshape_shape = [1] * x.ndim
-            reshape_shape[k] = x.shape[k]
-            dim_index = paddle.expand(paddle.arange(x.shape[k], dtype=index.dtype).reshape(reshape_shape),
-                                      index_shape).flatten()
-            nd_index.append(dim_index)
-    paddle_out = paddle.gather_nd(x, paddle.stack(nd_index, axis=-1)).reshape(index_shape)
-    return paddle_out
-
-def scatter(tensor,dim,index,src):
-    assert dim==0 or dim==1
-    assert tensor.ndim==index.ndim==src.ndim==2
-    index=paddle.cast(index,dtype='int64')
-    i, j = index.shape
-    grid_x, grid_y = paddle.meshgrid(paddle.arange(i), paddle.arange(j))
-    if dim==0:
-        index = paddle.stack([index.flatten(), grid_y.flatten()], axis=1)
-    else:
-        index = paddle.stack([grid_x.flatten(), index.flatten()], axis=1)
-    # PaddlePaddle updates 的 shape 大小必须与 index 对应
-    updates_index = paddle.stack([grid_x.flatten(), grid_y.flatten()], axis=1)
-    updates = paddle.gather_nd(src, index=updates_index)
-    res=paddle.scatter_nd_add(tensor, index, updates)
-    return res
 
 
 
@@ -228,50 +180,39 @@ class Sampling(object):
         return scores_buf, indices_buf, beams_buf
 
 
-if __name__ == '__main__':
-    strategy = Sampling(sampling_topp=0.8)
-    bsz, beam, vocab = 4, 1, 100
-    step = 2
-    lprobs = paddle.randn((bsz, beam, vocab))
-    scores = paddle.randn((bsz, beam, step))
-    scores_buf, indices_buf, beams_buf = strategy.step(step, lprobs, scores)
-    # print(scores_buf, scores_buf.shape)
-    # print(indices_buf, indices_buf.shape)
-    # print(beams_buf, beams_buf.shape)
+def masked_fill(x, mask, value):
+    return paddle.where(mask, paddle.to_tensor(value, dtype=x.dtype), x)
 
+def gather(x, axis, index):
+    index_shape = index.shape
+    index_flatten = index.flatten()
+    if axis < 0:  # 最后一维
+        axis = x.ndim + axis
+    nd_index = []
+    for k in range(x.ndim):
+        if k == axis:
+            nd_index.append(index_flatten)
+        else:
+            reshape_shape = [1] * x.ndim
+            reshape_shape[k] = x.shape[k]
+            dim_index = paddle.expand(paddle.arange(x.shape[k], dtype=index.dtype).reshape(reshape_shape),
+                                      index_shape).flatten()
+            nd_index.append(dim_index)
+    paddle_out = paddle.gather_nd(x, paddle.stack(nd_index, axis=-1)).reshape(index_shape)
+    return paddle_out
 
-
-    # PaddlePaddle 组合实现：
-    # x = paddle.zeros([3, 5], dtype="int64")
-    # updates = paddle.arange(1, 11).reshape([2, 5]) # src,与x 的宽对应
-    # 输出
-    # Tensor(shape=[2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-    #        [[1 , 2 , 3 , 4 , 5 ],
-    #         [6 , 7 , 8 , 9 , 10]])
-    # index = paddle.to_tensor([[0, 1, 2], [0, 1, 4]])
-    # index=paddle.cast(index,dtype='int64')
-    # i, j = index.shape
-    # grid_x, grid_y = paddle.meshgrid(paddle.arange(i), paddle.arange(j))
-    # print(grid_x.dtype,grid_y.dtype)
-    # # 若 PyTorch 的 dim 取 0
-    # # index = paddle.stack([index.flatten(), grid_y.flatten()], axis=1)
-    # # 若 PyTorch 的 dim 取 1
-    # print(grid_x.flatten().dtype)
-    # print(index.flatten().dtype)
-    # index = paddle.stack([grid_x.flatten(), index.flatten()], axis=1)
-    # # PaddlePaddle updates 的 shape 大小必须与 index 对应
-    # updates_index = paddle.stack([grid_x.flatten(), grid_y.flatten()], axis=1)
-    # updates = paddle.gather_nd(updates, index=updates_index)
-    # res=paddle.scatter_nd_add(x, index, updates)
-    # print(res)
-    # # 输出
-    # Tensor(shape=[3, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-    #        [[1, 2, 3, 0, 0],
-    #         [6, 7, 0, 0, 8],
-    #         [0, 0, 0, 0, 0]])
-
-    # x = paddle.zeros([3, 5], dtype="int64")
-    # updates = paddle.arange(1, 11).reshape([2, 5])  # src,与x 的宽对应
-    # index = paddle.to_tensor([[0, 1, 2], [0, 1, 4]])
-    # res=scatter(tensor=x,dim=1,index=index,src=updates)
-    # print(res)
+def scatter(tensor,dim,index,src):
+    assert dim==0 or dim==1
+    assert tensor.ndim==index.ndim==src.ndim==2
+    index=paddle.cast(index,dtype='int64')
+    i, j = index.shape
+    grid_x, grid_y = paddle.meshgrid(paddle.arange(i), paddle.arange(j))
+    if dim==0:
+        index = paddle.stack([index.flatten(), grid_y.flatten()], axis=1)
+    else:
+        index = paddle.stack([grid_x.flatten(), index.flatten()], axis=1)
+    # PaddlePaddle updates 的 shape 大小必须与 index 对应
+    updates_index = paddle.stack([grid_x.flatten(), grid_y.flatten()], axis=1)
+    updates = paddle.gather_nd(src, index=updates_index)
+    res=paddle.scatter_nd_add(tensor, index, updates)
+    return res

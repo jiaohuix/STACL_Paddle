@@ -76,29 +76,6 @@ def main():
         dropped_lines=raw_lines-out_lines
         drop_rate=(dropped_lines/raw_lines)*100
         print(f"Raw lines:{raw_lines}, Out lines: {out_lines}, {raw_lines-out_lines} [{drop_rate:.4f}%] lines dropped for len filt or lprob < {args.min_lprob}.")
-"""
-# 注意：src zh,tgt en是前向，用回译的语料en-zh抽取的才是 src=zh tgt=en(回译的原文是英，但是写tgt=en)
-python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 1.5 --output output/ft_data --srclang en --tgtlang zh  --min-lprob -3 output/generate*.txt 
-python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 1.5 --output output/ft_data --srclang en --tgtlang zh  --min-lprob -3 output/ft/generate*.txt
-6867774it [00:33, 203617.98it/s]
-Raw lines:2289258, Out lines: 2019684, 269574 [11.7756%] lines dropped for len filt or lprob < -3.0.
 
-# ratio 2.5
-$ python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 2.5 --output output/ft_data_r2.5 --srclang en --tgtlang zh  --min-lprob -3 output/ft/generate*.txt
-6867774it [00:35, 195373.17it/s]
-Raw lines:2289258, Out lines: 2282085, 7173 [0.3133%] lines dropped for len filt or lprob < -3.0.
-
-
-# 0 2 3 (无1) 
-$ python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 2.5 --output output/ft_data_r2.5new --srclang en --tgtlang zh  --min-lprob -3 output/ft/generate*.txt
-6039870it [00:30, 196468.52it/s]
-Raw lines:2013290, Out lines: 2007039, 6251 [0.3105%] lines dropped for len filt or lprob < -3.0.
-
-
-python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 2.5 --output output/ccmt_ft --srclang en --tgtlang zh  --min-lprob -3 output/bt_ft_ccmt/ft/generate_zhen.txt
-python scripts/bt_demo/extract_bt_data.py --minlen 1 --maxlen 250 --ratio 2.5 --output output/ccmt_bt --srclang zh --tgtlang en  --min-lprob -3 output/bt_ft_ccmt/bt/generate_enzh.txt
-
-
-"""
 if __name__ == "__main__":
     main()
