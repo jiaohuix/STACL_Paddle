@@ -8,8 +8,7 @@ mode=$1 # dev or test
 k=$2
 pretrained=$3
 beam_size=1
-
-if [ ! -n $4 ];then
+if [ $# -ge 4 ];then
   beam_size=$4
 fi
 
