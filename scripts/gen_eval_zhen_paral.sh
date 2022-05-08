@@ -23,11 +23,6 @@ stream_folder=dataset/stream_zh/${mode}/
 savedir=decode
 
 
-if [ ! -n $2 ];then
-  beam_size=$2
-fi
-
-
 if [ -e decode/zh-en.w${k}.all ]; then
     rm decode/zh-en.w${k}.all
 fi
