@@ -3,7 +3,7 @@ import argparse
 from yacs.config import CfgNode
 
 
-def get_arguments():
+def get_arguments(return_parser=False):
     """return argumeents, this will overwrite the config after loading yaml file"""
     parser = argparse.ArgumentParser(description="Simultranslation", add_help=True)
     parser.add_argument("-c", "--cfg", default=None, type=str,required=True, metavar="FILE", help="yaml file path")
@@ -75,8 +75,11 @@ def get_arguments():
     parser.add_argument("--remain-bpe", action="store_true",help="Weather to remain bpe after decode.")
 
 
-    args = parser.parse_args()
-    return args
+    if not return_parser:
+        args = parser.parse_args()
+        return args
+    else:
+        return parser
 
 def get_config(args):
     conf = CfgNode.load_cfg(open(args.cfg, encoding="utf-8"))
