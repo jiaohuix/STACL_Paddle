@@ -7,19 +7,19 @@ from .file_io import PathManager
 from enum import Enum, EnumMeta
 from typing import List,Union
 
+
 _code_to_dtype = {
     1: np.uint8,
     2: np.int8,
     3: np.int16,
     4: np.int32,
     5: np.int64,
-    6: np.float,
+    6: np.float64,
     7: np.double,
     8: np.uint16,
     9: np.uint32,
     10: np.uint64,
 }
-
 
 def best_fitting_int_dtype(
     max_int_to_represent,
