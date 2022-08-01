@@ -160,7 +160,7 @@ def batchify(insts, bos_idx, eos_idx, pad_idx, is_test=False, has_target=False):
         if not has_target:
             data_inputs = [samples_id, src_word]
         else:
-            tgt_word = right_pad([inst[0] for inst in insts])
+            tgt_word = right_pad([inst[1] for inst in insts])
             data_inputs = [samples_id, src_word, tgt_word]
 
     return data_inputs
